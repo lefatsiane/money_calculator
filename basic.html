@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salaries</title>
+    <style>
+      body {
+        background-color: black color(grey);
+      }
+    </style>
+    <script>
+      let emptyIncomes = {}; //initialise empty array
+
+      let income1 = { incomeName: "salary", amount: 25000, recuring: true }; // begenning of objects
+      let income2 = {
+        incomeName: "rental properties",
+        amount: 10000,
+        recuring: true,
+      };
+      let income3 = {
+        incomeName: "investment dividends",
+        amount: 5000,
+        recuring: false,
+      };
+      let income4 = { incomeName: "youtube", amount: 8000, recuring: true };
+      let income5 = { incomeName: "bonus", amount: 10000, recuring: false };
+
+      let incomes = [income1, income2, income3, income4, income5]; //an array of objects
+
+      sessionStorage.setItem("incomeName", JSON.stringify(incomes)); // incomeName and the stringifies incomes values are strings that have been storered in session memory as strings, then the JSON.strigify converts "incomes" to a javascript objcet that can be manipulated
+      console.log(JSON.parse(sessionStorage.getItem("incomeName"))); // getItem method is used to retrieve "incomeName" of all income names in the "incomes" string
+      let userInputIncomeName = prompt(
+        `currently you gain your income from: ${income1.incomeName}, ${income2.incomeName}, ${income3.incomeName}, ${income4.incomeName}, ${income5.incomeName}. Add one more!`
+      ); // ask user to input new income name
+
+      let userInputAmount = Number(
+        prompt(`how much do you get from this income ?`)
+      ); // ask user to input amount of money they make from said income
+      let userInputRecuring = prompt(
+        `true or false, is this a recuring amount?`
+      ); // asks user if the amount is recuring
+      if (userInputRecuring == false) {
+        console.log(false);
+      } //if false, it will read false. if true, it will read true
+
+      let income6 = {
+        incomeName: userInputIncomeName,
+        amount: userInputAmount,
+        recuring: userInputRecuring,
+      }; // new object with user data
+      console.log(income6); // will display user data
+
+      // everything done with incomes is duplicated and edited to match expenses
+      let emptyExpenses = {};
+
+      let expense1 = { expenseName: "groceries", amount: 5000, recuring: true };
+      let expense2 = { expenseName: "rent", amount: 12000, recuring: true };
+      let expense3 = {
+        expenseName: "school fees",
+        amount: 11000,
+        "recuring ": true,
+      };
+      let expense4 = {
+        expenseName: "weekend away",
+        amount: 8000,
+        recuring: false,
+      };
+      let expense5 = {
+        expenseName: "new phone",
+        amount: 10000,
+        recuring: false,
+      };
+
+      let expenses = [expense1, expense2, expense3, expense4, expense5];
+
+      sessionStorage.setItem("expenseName", JSON.stringify(expenses));
+      console.log(JSON.parse(sessionStorage.getItem("expenseName")));
+      let userInputExpenseName = prompt(
+        `currently your expenses come from: ${expense1.expenseName}, ${expense2.expenseName}, ${expense3.expenseName}, ${expense4.expenseName}, ${expense5.expenseName}. add one more!`
+      );
+
+      let userInputExpenseAmount = Number(prompt(`how much is this?`));
+      let userInputExpenseRecuring = prompt(
+        `true or false, is this a recuring amount?`
+      );
+      if (userInputExpenseRecuring == false) {
+        console.log(false);
+      }
+
+      let expense6 = {
+        expenseName: userInputExpenseName,
+        amount: userInputExpenseAmount,
+        recuring: userInputExpenseRecuring,
+      };
+      console.log(expense6);
+
+      let incomeTotal = // total income
+        income1.amount +
+        income2.amount +
+        income3.amount +
+        income4.amount +
+        income5.amount +
+        income6.amount;
+      let expenseTotal = //total expenses
+        expense1.amount +
+        expense2.amount +
+        expense3.amount +
+        expense4.amount +
+        expense5.amount +
+        expense6.amount;
+
+      let disposableIncome = incomeTotal - expenseTotal; //formula to get disposable income
+      let userInputSavings = Number(
+        prompt(
+          ` You have R${disposableIncome} of disposable income, how much would you like to save?`
+        )
+      ); // will display how much the user has let and prompt them on how much they would like to save
+      let finalAmount = disposableIncome - userInputSavings; // formula for finalAmount
+
+      alert(`In the end you're left with R${finalAmount}`); // alert pops up to tell the user their final amount
+    </script>
+  </head>
+  <body></body>
+</html>
